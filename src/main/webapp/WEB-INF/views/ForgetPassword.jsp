@@ -9,13 +9,14 @@
 <body>
 <h2>Forget Password</h2>
 
-	<form action="updatepassword" method="post">
-		Email: <input type="email"> 
-		<br><br>
-		Password: <input type="password"> 
-		<br><br>
+	<form action="sedotp" method="post">
 		
-		<a href="UpdatePassword">UpdatePassword</a>
+				Email: <input type="text" name="email"/><br><br> 
+		
+		
+		<input type="submit" value="Help Me">
 	</form>
+	<a href="login">Login</a>
+	
 </body>
 </html>

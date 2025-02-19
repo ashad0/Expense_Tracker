@@ -4,27 +4,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Signup</title>
+<title>Signup Page</title>
 </head>
 <body>
+    <div class="icon">👤</div>
 	<h2>Signup</h2>
 	
 	<form action="saveuser" method="Post">
-		First Name: <input type="text" >
+		
+		FirstName :<input type="text" name="FirstName" required >
 		<br><br>
-		E-mail: <input type="text" >
+		LastName :<input type="text" name="LastName" required >
 		<br><br>
-		Mobile Number: <input type="text">
+		Gender: Male<input type="radio" name="gender" value="male">
+				FeMale<input type="radio" name="gender" value="female">
+		<br><br> 
+		Email :<input type="text" name="Email" required>
 		<br><br>
-		Password: <input type="password" >
+		MobileNumber :<input type="text" name="MobileNumber" required>
 		<br><br>
-		Confirm Password: <input type="password">
-		<br	><br><br>
-		<input type="submit" value="Signup">
-		<br		><br>
+		Password :<input type="password" name="Password" required>
+		<br><br>
+		
+		Role: Admin<input type="radio" name="Role" value="Admin">
+				User<input type="radio" name="Role" value="User">
+	
+		<input type="submit" value="Signup" >
+		<br><br>
 	</form>
-	
-	
 	<a href="login">Login</a>
+
+	
 </body>
 </html>

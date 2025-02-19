@@ -10,11 +10,15 @@
 	<h2>Update Password </h2>
 	
 	<form action="updatepassword" method="post">
-		New Password: <input type="text">
+	
+		Email: <input type="text" name="email"/><br><br> 
+		OTP: <input type="text" name="otp"/><br><br> 				
+	
+		New Password: <input type="password" name="password">
 		<br><br>
-		Confirm Password: <input type="text" >
+		Confirm Password: <input type="password" name="confirmPassword" >
 		<br><br>
-		<input type="submit" value="update">
+		<input type="submit" value="Update Password">
 	</form>
 </body>
 </html>
