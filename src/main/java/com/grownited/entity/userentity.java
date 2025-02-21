@@ -1,5 +1,6 @@
 package com.grownited.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,27 +13,25 @@ public class userentity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer userid ;
-	private String FirstName;
+	private String firstName;
 	private String lastName;
-	private String Email;
+	 @Column(unique = true, nullable = false)
+	private String email;
 	private String gender;
-	private String MobileNumber; 
-	private String Password;
-	private String Role;
-
-	
+	private String mobileNumber; 
+	private String password;
+	private String role;
 	public Integer getUserid() {
 		return userid;
 	}
 	public void setUserid(Integer userid) {
 		this.userid = userid;
 	}
-	
 	public String getFirstName() {
-		return FirstName;
+		return firstName;
 	}
 	public void setFirstName(String firstName) {
-		FirstName = firstName;
+		this.firstName = firstName;
 	}
 	public String getLastName() {
 		return lastName;
@@ -41,10 +40,10 @@ public class userentity {
 		this.lastName = lastName;
 	}
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 	public String getGender() {
 		return gender;
@@ -53,23 +52,28 @@ public class userentity {
 		this.gender = gender;
 	}
 	public String getMobileNumber() {
-		return MobileNumber;
+		return mobileNumber;
 	}
 	public void setMobileNumber(String mobileNumber) {
-		MobileNumber = mobileNumber;
+		this.mobileNumber = mobileNumber;
 	}
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
 	public String getRole() {
-		return Role;
+		return role;
 	}
 	public void setRole(String role) {
-		Role = role;
+		this.role = role;
 	}
-
+	
+	
+	
+	
+		
+	
 	
 }

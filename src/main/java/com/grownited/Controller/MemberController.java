@@ -1,6 +1,7 @@
 package com.grownited.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,4 +38,43 @@ public class MemberController {
 		return "ListMember";
 	}
 
+	@GetMapping("viewmember")
+	public String viewMember(Integer memberId,Model model) {
+		
+		System.out.println("id ===> " + memberId);
+		Optional<MemberEntity> op = repositoryMember.findById(memberId);
+		if (op.isEmpty()) {
+			
+		}else {
+			MemberEntity member = op.get();
+			
+			model.addAttribute("member", member);
+			
+		}
+		
+		return "ViewMember";
+	}
+	
+	@GetMapping("deletemember")
+	public String deleteMember(Integer memberId) {
+		repositoryMember.deleteById(memberId);
+		return "redirect:/listmember";
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

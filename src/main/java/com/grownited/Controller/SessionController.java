@@ -1,6 +1,7 @@
 package com.grownited.Controller;
 
-import java.util.List;
+
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -73,19 +74,55 @@ public class SessionController {
 		return "Login";
 	}
 	
-	@PostMapping ("signup")
-	public String signup(userentity entityuser) {
-		repouseRepository.save(entityuser);
-		return "Signup";
-	}
-	
-	@GetMapping ("listsignup")
-	public String listsignup(Model model) {
-		List<userentity> userlist = repouseRepository.findAll();
-		model.addAttribute("userlist", userlist);
-		
-		return "ListSignup";
-	}
-	
+	@PostMapping("/authenticate")
+	public String authenticate(String email, String password, Model model) {
+	    System.out.println(email);
+	    System.out.println(password);
 
+	    Optional<userentity> user = repouseRepository.findByEmail(email);
+
+	    if (user.isEmpty()) {
+	        model.addAttribute("error", "Invalid Credentials");
+	        return "Login";
+	    }
+
+	    userentity dbUser = user.get();
+
+	    if (encoder.matches(password, dbUser.getPassword())) {
+	        return "redirect:/home";
+	    }
+
+	    model.addAttribute("error", "Invalid Credentials");
+	    return "Login";
+	}
+
+	@GetMapping("home")
+	public String showHome() {
+		return "Home";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
