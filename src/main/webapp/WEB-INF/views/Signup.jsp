@@ -174,14 +174,6 @@
                 <label for="password">Password: </label>
                 <input type="password" id="password" name="password" required>
 
-                <div class="form-group">
-				    <label>Role: </label>
-				    <div class="radio-group">
-				        <label><input type="radio" name="role" value="Admin"> Admin</label>
-				        <label><input type="radio" name="role" value="User"> User</label>
-				    </div>
-				</div>
-
                 <button type="submit">Signup</button>
             </form>
         </div>

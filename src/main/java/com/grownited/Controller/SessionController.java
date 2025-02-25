@@ -14,6 +14,8 @@ import com.grownited.entity.userentity;
 import com.grownited.repository.UserRepository;
 import com.grownited.service.MailService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class SessionController {
 	
@@ -73,32 +75,52 @@ public class SessionController {
 	public String updatepassword() {
 		return "Login";
 	}
-	
-	@PostMapping("/authenticate")
-	public String authenticate(String email, String password, Model model) {
-	    System.out.println(email);
-	    System.out.println(password);
+	@PostMapping("authenticate")
+	public String authenticate(String email, String password, Model model, HttpSession session) {// sakira@yopmail.com
+																									// sakira
+		System.out.println(email);
+		System.out.println(password);
 
-	    Optional<userentity> user = repouseRepository.findByEmail(email);
+		// users -> email,password
+		Optional<userentity> op = repouseRepository.findByEmail(email);
+		// select * from users where email = :email and password = :password
+		if (op.isPresent()) {
+			// true
+			// email
+			userentity dbUser = op.get();
 
-	    if (user.isEmpty()) {
-	        model.addAttribute("error", "Invalid Credentials");
-	        return "Login";
-	    }
+			boolean ans = encoder.matches(password, dbUser.getPassword());
 
-	    userentity dbUser = user.get();
+			if (ans == true) {
+				session.setAttribute("user", dbUser); // session -> user set
+				if (dbUser.getRole().equals("ADMIN")) {
 
-	    if (encoder.matches(password, dbUser.getPassword())) {
-	        return "redirect:/home";
-	    }
+					return "redirect:/AdminDashboard";
+				} else if (dbUser.getRole().equals("USER")) {
 
-	    model.addAttribute("error", "Invalid Credentials");
-	    return "Login";
+					return "redirect:/Home";
+				} else {
+					model.addAttribute("error", "Please contact Admin with Error Code #0991");
+					return "Login";
+				}
+
+			}
+		}
+		model.addAttribute("error", "Invalid Credentials");
+		return "Login";
 	}
 
-	@GetMapping("home")
+
+	@GetMapping("Home")
 	public String showHome() {
 		return "Home";
+	}
+	
+
+	@GetMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/login";// login url
 	}
 }
 
