@@ -3,13 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta charset="utf-8">
+
+  <title>Expense Tracker</title>
 </head>
 <body>
 		
-		
-			<h2>Home</h2>
+	<h2>Home</h2>
+	
+	Welcome , ${user.firstName} 
+	
+	<br>
+	
+<a href="logout">Logout</a> 
+	
 		
 </body>
 </html>

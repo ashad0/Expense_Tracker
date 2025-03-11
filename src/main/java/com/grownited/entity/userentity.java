@@ -21,6 +21,7 @@ public class userentity {
 	private String mobileNumber; 
 	private String password;
 	private String role;
+	private String otp;
 	public Integer getUserid() {
 		return userid;
 	}
@@ -68,6 +69,12 @@ public class userentity {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public String getOtp() {
+		return otp;
+	}
+	public void setOtp(String otp) {
+		this.otp = otp;
 	}
 	
 	

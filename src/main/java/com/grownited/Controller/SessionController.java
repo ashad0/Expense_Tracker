@@ -1,6 +1,7 @@
 package com.grownited.Controller;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class SessionController {
 	}
 	
 	@PostMapping ("/saveuser")
-	public String saveuser (userentity userentity) {
+	public String saveUser (userentity userentity) {
 		System.out.println(userentity.getFirstName());
 		System.out.println(userentity.getLastName());
 		System.out.println(userentity.getGender());
@@ -67,14 +68,50 @@ public class SessionController {
 	}
 	
 	@PostMapping("sendotp")
-	public String sendotp() {
-		return "UpdatePassword";
+	public String sendOtp(String email, Model model) {
+		// email valid
+		Optional<userentity> op = repouseRepository.findByEmail(email);
+		if (op.isEmpty()) {
+			// email invalid
+			model.addAttribute("error", "Email not found");
+			return "ForgetPassword";
+		} else {
+			String otp = "";
+			otp = (int) (Math.random() * 1000000) + "";// 0.25875621458541
+
+			userentity user = op.get();
+			user.setOtp(otp);
+			repouseRepository.save(user);// update otp for user
+			serviceMail.sendOtpForForgetPassword(email, user.getFirstName(), otp);
+			return "UpdatePassword";
+
+		}
 	}
 	
-	@PostMapping ("/updatepassword")
-	public String updatepassword() {
+
+	@PostMapping("updatepassword")
+	public String updatePassword(String email, String password, String otp, Model model) {
+		Optional<userentity> op = repouseRepository.findByEmail(email);
+		if (op.isEmpty()) {
+			model.addAttribute("error", "Invalid Data");
+			return "ChangePassword";
+		} else {
+			userentity user = op.get();
+			if (user.getOtp().equals(otp)) {
+				String encPwd = encoder.encode(password);
+				user.setPassword(encPwd);
+				user.setOtp("");
+				repouseRepository.save(user);// update
+			} else {
+
+				model.addAttribute("error", "Invalid Data");
+				return "UpdatePassword";
+			}
+		}
+		model.addAttribute("msg","Password updated");
 		return "Login";
 	}
+	
 	@PostMapping("authenticate")
 	public String authenticate(String email, String password, Model model, HttpSession session) {// sakira@yopmail.com
 																									// sakira
@@ -109,11 +146,24 @@ public class SessionController {
 		model.addAttribute("error", "Invalid Credentials");
 		return "Login";
 	}
-
-
-	@GetMapping("Home")
-	public String showHome() {
-		return "Home";
+	
+	@GetMapping("/ViewUser")
+	public String viewUser( Integer userid, Model model) {
+	    System.out.println("id ===> " + userid);
+	    Optional<userentity> op = repouseRepository.findById(userid);
+	    if (op.isEmpty()) {
+	        // Handle user not found scenario
+	    } else {
+	        userentity user = op.get();
+	        model.addAttribute("user", user);
+	    }
+	    return "ViewUser";
+	}
+	
+	@GetMapping("deleteuser")
+	public String deleteuser(Integer userid) {
+		repouseRepository.deleteById(userid);
+		return "redirect:/ListUser";
 	}
 	
 
@@ -121,6 +171,13 @@ public class SessionController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/login";// login url
+	}
+	
+	@GetMapping("ListUser")
+	public String listUser(Model model) {
+		List<userentity> userList = repouseRepository.findAll();
+		model.addAttribute("userList", userList);
+		return "ListUser";
 	}
 }
 
