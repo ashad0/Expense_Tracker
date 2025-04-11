@@ -22,7 +22,7 @@
 
 	<jsp:include page="Sidebar.jsp"></jsp:include>
 
-	<main id="main" class="main">
+	<main id="main" class="main" style="background-color: gold;">
 
 		<div class="pagetitle">
 			<h1>List SubCategory</h1>
@@ -46,7 +46,7 @@
 							<div class="card">
 
 
-								<div class="card-body">
+								<div class="card-body" style="background-color: black; color: gold;">
 									<h5 class="card-title">
 										SubCategory<span>/all</span>
 									</h5>
@@ -55,8 +55,8 @@
 									<table class="table datatable datatable-table table-hover" id="myTable">
 										<thead>
 											<tr>
-												<th>Title</th>
-												<th>Action</th>
+												<th style="background-color: gold; color: black;">Title</th>
+												<th style="background-color: gold; color: black;">Action</th>
 											
 											</tr>
 										</thead>
@@ -64,9 +64,11 @@
 										<tbody>
 											<c:forEach items="${subList}" var="s">
 												<tr>
-													<td>${s.title}</td>
-													<td><a href="#">Edit</a> |<a href="deletesub?subid=${s.subId}">Delete</a>|
-													 <a href="ViewSub?subid=${s.subId}">View</a>
+													<td style="background-color: black; color: gold;">${s.title}</td>
+													<td style="background-color: black; color: gold;">
+													 <a href="ViewSub?subid=${s.subId}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a> |
+													<a href="EditSub?subId=${s.subId }" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a> |
+													<a href="deletesub?subid=${s.subId}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
 												
 													 </td>
 												</tr>

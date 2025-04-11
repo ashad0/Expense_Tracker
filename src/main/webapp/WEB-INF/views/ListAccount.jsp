@@ -22,7 +22,7 @@
 
 	<jsp:include page="Sidebar.jsp"></jsp:include>
 
-	<main id="main" class="main">
+	<main id="main" class="main" style="background-color: gold;">
 
 		<div class="pagetitle">
 			<h1>Account User</h1>
@@ -46,19 +46,26 @@
 							<div class="card">
 
 
-								<div class="card-body">
+								<div class="card-body" style="background-color: black; color: gold;">
 									<h5 class="card-title">
 										Accounts<span>/all</span>
 									</h5>
-
+							<div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
+											<div style="background-color: black; color: gold; padding: 10px 20px; border-radius: 8px; font-weight: bold; font-size: 16px;">
+												Total Account: ₹${totalAccount}
+											</div>
+										</div>
+											
 
 									<table class="table datatable datatable-table table-hover" id="myTable">
 										<thead>
 											<tr>
-												<th>Title</th>
-												<th>Amount</th>
-												<th>Description</th>
-												<th>Action</th>
+												<th style="background-color: gold; color: black;">Title</th>
+												<th style="background-color: gold; color: black;">Amount</th>
+												<th style="background-color: gold; color: black;">Description</th>
+												
+									
+												<th style="background-color: gold; color: black;">Action</th>
 											
 											</tr>
 										</thead>
@@ -66,12 +73,15 @@
 										<tbody>
 											<c:forEach items="${accountList}" var="a">
 												<tr>
-													<td>${a.title}</td>
-													<td>${a.amount}</td>
-													<td>${a.description}</td>
-													<td><a href="#">Edit</a> |
-												    <a href="deleteaccount?accountid=${a.accountId}">Delete</a> |
-												    <a href="ViewAccount?accountid=${a.accountId}">View</a>
+													<td style="background-color: black; color: gold;">${a.title}</td>
+													<td style="background-color: black; color: gold;">${a.amount}</td>
+													<td style="background-color: black; color: gold;">${a.description}</td>
+												
+									
+													<td style="background-color: black; color: gold;">
+												    <a href="ViewAccount?accountid=${a.accountId}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a> |
+													<a href="EditAccount?accountId=${a.accountId}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a> |
+												    <a href="deleteaccount?accountid=${a.accountId}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a> 
 													</td>
 
 												</tr>

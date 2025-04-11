@@ -1,7 +1,9 @@
 package com.grownited.Controller;
 
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.grownited.entity.userentity;
 import com.grownited.repository.UserRepository;
 import com.grownited.service.MailService;
@@ -30,6 +35,9 @@ public class SessionController {
 	@Autowired
 	PasswordEncoder encoder;
 	
+	@Autowired
+	Cloudinary cloudinary;
+	
 	@GetMapping ("signup")
 	public String signup() {
 		return "Signup";
@@ -41,7 +49,23 @@ public class SessionController {
 	}
 	
 	@PostMapping ("/saveuser")
-	public String saveUser (userentity userentity) {
+	public String saveUser (userentity userentity, MultipartFile profilePic) {
+	
+		// Check if the file is provided
+	    if (profilePic == null || profilePic.isEmpty()) {
+	        System.out.println("Profile picture is missing!");
+	        return "Signup"; // Redirect back to signup page
+	    }
+
+	    try {
+	        // Upload to Cloudinary
+	        Map result = cloudinary.uploader().upload(profilePic.getBytes(), ObjectUtils.emptyMap());
+	        userentity.setProfilePicPath(result.get("url").toString());
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        return "Signup"; // Return to signup page on failure
+	    }
+		
 		System.out.println(userentity.getFirstName());
 		System.out.println(userentity.getLastName());
 		System.out.println(userentity.getGender());
@@ -67,6 +91,12 @@ public class SessionController {
 		
 	}
 	
+	@GetMapping ("/changepassword")
+	public String changepassword() {
+		return "changepassword";
+	}
+
+	
 	@PostMapping("sendotp")
 	public String sendOtp(String email, Model model) {
 		// email valid
@@ -90,7 +120,7 @@ public class SessionController {
 	
 
 	@PostMapping("updatepassword")
-	public String updatePassword(String email, String password, String otp, Model model) {
+	public String updatepassword(String email, String password, String otp, Model model) {
 		Optional<userentity> op = repouseRepository.findByEmail(email);
 		if (op.isEmpty()) {
 			model.addAttribute("error", "Invalid Data");
@@ -105,12 +135,12 @@ public class SessionController {
 			} else {
 
 				model.addAttribute("error", "Invalid Data");
-				return "UpdatePassword";
+				return "redirect:/updatepassword";
 			}
 		}
 		model.addAttribute("msg","Password updated");
 		return "Login";
-	}
+	}	
 	
 	@PostMapping("authenticate")
 	public String authenticate(String email, String password, Model model, HttpSession session) {// sakira@yopmail.com
@@ -178,6 +208,65 @@ public class SessionController {
 		List<userentity> userList = repouseRepository.findAll();
 		model.addAttribute("userList", userList);
 		return "ListUser";
+	}
+	
+	@GetMapping("EditUser")
+	public String editUser(Integer userid,Model model) {
+		Optional<userentity> op = repouseRepository.findById(userid);
+		if (op.isEmpty()) {
+			return "redirect:/ListUser";
+		} else {
+			model.addAttribute("user",op.get());
+			return "EditUser";
+
+		}
+	}
+	@PostMapping("updateuser")
+	public String updateUser(userentity userentity) {
+		
+		System.out.println(userentity.getUserid());
+				Optional<userentity> op = repouseRepository.findById(userentity.getUserid());
+		if(op.isPresent())
+		{
+		userentity dbac = op.get(); 
+			dbac.setFirstName(userentity.getFirstName());
+			dbac.setLastName(userentity.getLastName());
+			dbac.setEmail(userentity.getEmail());
+			dbac.setMobileNumber(userentity.getMobileNumber());
+
+			repouseRepository.save(dbac);
+		}
+		return "redirect:/ListUser";
+	}
+	
+	@GetMapping("MyProfile")
+	public String MyProfile(HttpSession session, Model model) {
+	    // Fetch the logged-in user from the session
+	    userentity loggedInUser = (userentity) session.getAttribute("user");
+
+	    if (loggedInUser == null) {
+	        return "redirect:/login";  // Redirect to login page if no user is logged in
+	    }
+
+	    // Add user data to the model for displaying on the profile page
+	    model.addAttribute("user", loggedInUser);
+
+	    return "MyProfile";  // Return the profile page
+	}
+	
+	@GetMapping("AdminProfile")
+	public String AdminProfile(HttpSession session, Model model) {
+	    // Fetch the logged-in user from the session
+	    userentity loggedInUser = (userentity) session.getAttribute("user");
+
+	    if (loggedInUser == null) {
+	        return "redirect:/login";  // Redirect to login page if no user is logged in
+	    }
+
+	    // Add user data to the model for displaying on the profile page
+	    model.addAttribute("user", loggedInUser);
+
+	    return "AdminProfile";  // Return the profile page
 	}
 }
 

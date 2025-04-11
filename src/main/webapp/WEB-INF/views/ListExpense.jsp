@@ -23,16 +23,17 @@
 
 	<jsp:include page="Sidebar.jsp"></jsp:include>
 
-	<main id="main" class="main">
+	<main id="main" class="main" style="background-color: gold;">
 
 		<div class="pagetitle">
-			<h1>Account User</h1>
+			<h1>Expense User</h1>
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="admindashboard">Home</a></li>
-					<li class="breadcrumb-item active">List Account</li>
+					<li class="breadcrumb-item active">List Expense</li>
 				</ol>
 			</nav>
+												
 		</div>
 		<!-- End Page Title -->
 
@@ -47,37 +48,49 @@
 							<div class="card">
 
 
-								<div class="card-body">
+								<div class="card-body" style="background-color: black; color: gold;">
 									<h5 class="card-title">
-										Accounts<span>/all</span>
+										Expenses<span>/all</span>
 									</h5>
-
-
-									<table class="table datatable datatable-table table-hover" id="myTable">
-										<thead>
-											<tr>
-												<th>Title</th>
-												<th>Status</th>
-												<th>Amount</th>
-												<th>TransactionDate</th>
-												<th>Description</th>
-												<th>Action</th>
+									 
+									
+										<!-- ✅ Total Expense Box at top-right -->
+										<div style="display: flex; justify-content: right; margin-bottom: 10px;">
+											<div style="background-color: black; color: gold; padding: 10px 20px; border-radius: 8px; font-weight: bold; font-size: 16px;">
+												Total Expense: ₹${totalExpense}
+											</div>
+										</div>
+										
+											
+									<table class="table datatable datatable-table table-hover"  id="myTable" >
+										<thead >
+													
+											<tr >
+												<th style="background-color: gold; color: black;">Title</th>
+												<th style="background-color: gold; color: black;">Status</th>
+												<th style="background-color: gold; color: black;">Amount</th>
+												<th style="background-color: gold; color: black;">TransactionDate</th>
+												<th style="background-color: gold; color: black;">Description</th>
+												<th style="background-color: gold; color: black;">Action</th>
 											</tr>
 										</thead>
 
-										<tbody>
+										<tbody >
 											<c:forEach items="${expenseList}" var="e">
 												<tr>
-													<td>${e.title}</td>
-													<td>${e.status}</td>
-													<td>${e.amount}</td>
-													<td>${e.transactionDate}</td>
-													<td>${e.description}</td>
-													<td><a href="#">Edit</a> |<a href="deleteexpense?expenseid=${e.expenseId}">Delete</a>|
-													 <a href="ViewExpense?expenseid=${e.expenseId}">View</a>
+													<td style="background-color: black; color: gold;">${e.title}</td>
+													<td style="background-color: black; color: gold;">${e.status}</td>
+													<td style="background-color: black; color: gold;">${e.amount}</td>
+													<td style="background-color: black; color: gold;">${e.transactionDate}</td>
+													<td style="background-color: black; color: gold;">${e.description}</td>
+													<td style="background-color: black; color: gold;">
+													 <a href="ViewExpense?expenseid=${e.expenseId}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a> |
+													<a href="EditExpense?expenseId=${e.expenseId }" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a> |
+													<a href="deleteexpense?expenseid=${e.expenseId}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
 													 </td>
 												</tr>
 											</c:forEach>
+											
 										</tbody>
 
 									</table>

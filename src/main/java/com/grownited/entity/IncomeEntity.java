@@ -19,6 +19,8 @@ public class IncomeEntity {
 	private String amount;
 	private String transcationDate;
 	private String description;
+	private Integer userId;
+	private Integer accountId;
 	
 	public Integer getIncomeId() {
 		return incomeId;
@@ -57,6 +59,18 @@ public class IncomeEntity {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+	public Integer getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
 	}
 
 	

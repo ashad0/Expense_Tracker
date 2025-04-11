@@ -15,10 +15,15 @@ public class ExpenseEntity {
 	
 	private Integer expenseId;
 	private String title;
+	private Integer categoryId;
+	private Integer subcategoryId;
+	private Integer vendorId;
+	private Integer accountId;
 	private String status;
 	private String amount;
 	private String transactionDate;
 	private String description;
+	private Integer userid;
 	
 	public Integer getExpenseId() {
 		return expenseId;
@@ -46,8 +51,6 @@ public class ExpenseEntity {
 		this.amount = amount;
 	}
 	
-	
-	
 	public String getTransactionDate() {
 		return transactionDate;
 	}
@@ -59,6 +62,36 @@ public class ExpenseEntity {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
+	}
+	public Integer getSubcategoryId() {
+		return subcategoryId;
+	}
+	public void setSubcategoryId(Integer subcategoryId) {
+		this.subcategoryId = subcategoryId;
+	}
+	public Integer getVendorId() {
+		return vendorId;
+	}
+	public void setVendorId(Integer vendorId) {
+		this.vendorId = vendorId;
+	}
+	public Integer getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
+	public Integer getUserid() {
+		return userid;
+	}
+	public void setUserid(Integer userid) {
+		this.userid = userid;
 	}
 	
 	

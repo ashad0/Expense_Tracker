@@ -16,6 +16,9 @@ public class AccountEntity {
 	private String title;
 	private String amount;
 	private String description;
+	
+	private Integer userid;
+	
 	public Integer getAccountId() {
 		return accountId;
 	}
@@ -39,6 +42,12 @@ public class AccountEntity {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public Integer getUserid() {
+		return userid;
+	}
+	public void setUserid(Integer userid) {
+		this.userid = userid;
 	}
 	
 	

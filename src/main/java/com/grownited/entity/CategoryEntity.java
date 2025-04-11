@@ -15,6 +15,7 @@ public class CategoryEntity {
 	
 	private Integer categoryId;
 	private String title;
+	private Integer userid;
 	
 	
 	public Integer getCategoryId() {
@@ -28,6 +29,12 @@ public class CategoryEntity {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public Integer getUserid() {
+		return userid;
+	}
+	public void setUserid(Integer userid) {
+		this.userid = userid;
 	}
 	
 	

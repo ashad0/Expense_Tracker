@@ -15,6 +15,9 @@ public class SubEntity {
 	
 	private Integer subId;
 	private String title;
+	private Integer userid;
+	private Integer categoryId;
+	
 	public Integer getSubId() {
 		return subId;
 	}
@@ -26,6 +29,18 @@ public class SubEntity {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public Integer getUserid() {
+		return userid;
+	}
+	public void setUserid(Integer userid) {
+		this.userid = userid;
+	}
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
 	}
 	
 	

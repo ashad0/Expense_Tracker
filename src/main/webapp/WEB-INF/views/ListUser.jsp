@@ -22,7 +22,7 @@
 
 	<jsp:include page="Sidebar.jsp"></jsp:include>
 
-	<main id="main" class="main">
+	<main id="main" class="main" style="background-color: gold;">
 
 		<div class="pagetitle">
 			<h1>List User</h1>
@@ -46,32 +46,34 @@
 							<div class="card">
 
 
-								<div class="card-body">
+								<div class="card-body" style="background-color: black; color: gold;">
 									<h5 class="card-title">
 										Users<span>/all</span>
 									</h5>
-
+								
 
 									<table class="table datatable datatable-table table-hover" id="myTable">
 										<thead>
 											<tr>
-												<th>FirstName</th>
-												<th>LastName</th>
-												<th>Email</th>
-												<th>ContactNum</th>
-												<th>Action</th>
+												<th style="background-color: gold; color: black;">FirstName</th>
+												<th style="background-color: gold; color: black;">LastName</th>
+												<th style="background-color: gold; color: black;">Email</th>
+												<th style="background-color: gold; color: black;">ContactNum</th>
+												<th style="background-color: gold; color: black;">Action</th>
 											</tr>
 										</thead>
 
 										<tbody>
 											<c:forEach items="${userList}" var="u">
 												<tr>
-													<td>${u.firstName}</td>
-													<td>${u.lastName}</td>
-													<td>${u.email}</td>
-													<td>${u.mobileNumber}</td>
-													<td><a href="#">Edit</a> |<a href="deleteuser?userid=${u.userid}">Delete</a>|
-													 <a href="ViewUser?userid=${u.userid}">View</a>
+													<td style="background-color: black; color: gold;">${u.firstName}</td>
+													<td style="background-color: black; color: gold;">${u.lastName}</td>
+													<td style="background-color: black; color: gold;">${u.email}</td>
+													<td style="background-color: black; color: gold;">${u.mobileNumber}</td>
+													<td style="background-color: black; color: gold;">
+													 <a href="ViewUser?userid=${u.userid}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a> |
+													<a href="EditUser?userid=${u.userid }" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a> |
+													<a href="deleteuser?userid=${u.userid}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
 													 </td>
 												</tr>
 											</c:forEach>
@@ -126,3 +128,4 @@
 
 </body>
 </html>
+

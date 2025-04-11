@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.grownited.entity.VendorEntity;
+import com.grownited.entity.userentity;
 import com.grownited.repository.VendorRepository;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class VendorController {
@@ -24,8 +27,12 @@ public class VendorController {
 	}
 	
 	@PostMapping("savevendor")
-	public String savevendor(VendorEntity entityvendor) {
+	public String savevendor(VendorEntity entityvendor, HttpSession session) {
 		System.out.println(entityvendor.getTitle());
+		
+		userentity user = (userentity)session.getAttribute("user");
+		Integer userid = user.getUserid();
+		entityvendor.setUserid(userid);
 		
 		repositoryvendor.save(entityvendor);
 		return "Vendor";
@@ -56,4 +63,31 @@ public class VendorController {
 			}
 		return "ViewVendor";
 	}
+	
+	@GetMapping("EditVendor")
+	public String editVendor(Integer vendorId,Model model) {
+		Optional<VendorEntity> op = repositoryvendor.findById(vendorId);
+		if (op.isEmpty()) {
+			return "redirect:/ListVendor";
+		} else {
+			model.addAttribute("Vendor",op.get());
+			return "EditVendor";
+
+		}
+	}
+	
+	@PostMapping("updatevendor")
+	public String updatevendor(VendorEntity vendorEntity) {
+		
+		System.out.println(vendorEntity.getTitle());
+				Optional<VendorEntity> op = repositoryvendor.findById(vendorEntity.getVendorId());
+		if(op.isPresent())
+		{
+		VendorEntity dbac = op.get(); 
+			dbac.setTitle(vendorEntity.getTitle());
+			repositoryvendor.save(dbac);
+		}
+		return "redirect:/ListVendor";
+	}
+	
 }

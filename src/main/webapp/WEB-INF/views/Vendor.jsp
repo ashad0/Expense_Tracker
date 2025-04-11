@@ -1,72 +1,79 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vendor Form</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .form-container {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        .input-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        input[type="submit"] {
-            width: 100%;
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Vendor Entry</title>
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Nunito|Poppins" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <jsp:include page="Admincss.jsp"></jsp:include>
 </head>
+
 <body>
+  <jsp:include page="Header.jsp"></jsp:include>
+  <jsp:include page="Sidebar.jsp"></jsp:include>
 
-    <div class="form-container">
-        <h2>Vendor Entry</h2>
-        <form action="savevendor" method="post">
-            <div class="input-group">
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title" required>
+  <main id="main" class="main">
+    <section class="section dashboard">
+      <div class="row" style="min-height: 500px;">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="pt-2 pb-2">
+                    <h5 class="card-title text-center pb-0 fs-4">Add New Vendor</h5>
+                  </div>
+
+                  <form class="row g-3 needs-validation" action="savevendor" method="post" novalidate>
+
+                    <div class="col-12">
+                      <label for="title" class="form-label fw-bold icon-blue">Title</label>
+                      <input type="text" class="form-control" id="title" name="title" placeholder="Enter vendor title" required>
+                      <div class="invalid-feedback">Please enter vendor title!</div>
+                    </div>
+
+                    <div class="col-12">
+                      <button class="btn btn-primary w-100" type="submit" style="color: gold; background-color: black;">Save Vendor</button>
+                    </div>
+
+                  </form>
+                </div> <!-- card-body -->
+              </div> <!-- card -->
             </div>
-            <input type="submit" value="Save Vendor">
-        </form>
-    </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
+  <jsp:include page="Footer.jsp"></jsp:include>
+  <jsp:include page="AdminJs.jsp"></jsp:include>
+
+  <!-- Optional scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.min.js"></script>
 </body>
 </html>

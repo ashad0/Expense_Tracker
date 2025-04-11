@@ -9,8 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.grownited.entity.CategoryEntity;
 import com.grownited.entity.SubEntity;
+import com.grownited.entity.userentity;
+import com.grownited.repository.CategoryRepository;
 import com.grownited.repository.SubRepository;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class SubController {
@@ -18,16 +23,28 @@ public class SubController {
 	@Autowired
 	SubRepository repositorysub;
 	
+	@Autowired
+	CategoryRepository categoryRepository;
+	
 	@GetMapping("Sub")
-	public String sub() {
+	public String sub(Model model) {
+		List<CategoryEntity> categoryList = categoryRepository.findAll();
+		model.addAttribute("categoryList", categoryList);
 		return "Sub";
 	}
 	
 	@PostMapping("savesub")
-	public String savesub(SubEntity entitysub) {
+	public String savesub(SubEntity entitysub, HttpSession session,Integer categoryId) {
 		System.out.println(entitysub.getTitle());
+		
+		userentity user = (userentity)session.getAttribute("user");
+		Integer userid = user.getUserid();
+		entitysub.setUserid(userid);
+		entitysub.setCategoryId(categoryId);
+		
+	
 		repositorysub.save(entitysub);
-		return "Sub";
+		return "redirect:/Sub";
 	}
 	
 	
@@ -57,5 +74,34 @@ public class SubController {
 	    }
 	    return "ViewSub";
 	}
+	
+	@GetMapping("EditSub")
+	public String editSub(Integer subId,Model model) {
+		Optional<SubEntity> op = repositorysub.findById(subId);
+		if (op.isEmpty()) {
+			return "redirect:/ListSub";
+		} else {
+			model.addAttribute("Sub",op.get());
+			return "EditSub";
+
+		}
+	}
+	
+	@PostMapping("updatesub")
+	public String updatesub(SubEntity subEntity) {
+		
+		System.out.println(subEntity.getTitle());
+				Optional<SubEntity> op = repositorysub.findById(subEntity.getSubId());
+		if(op.isPresent())
+		{
+		SubEntity dbac = op.get(); 
+			dbac.setTitle(subEntity.getTitle());
+			repositorysub.save(dbac);
+		}
+		return "redirect:/ListSub";
+	}
+	
+	
+
 	
 }

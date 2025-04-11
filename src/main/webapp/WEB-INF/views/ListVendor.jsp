@@ -22,7 +22,7 @@
 
 	<jsp:include page="Sidebar.jsp"></jsp:include>
 
-	<main id="main" class="main">
+	<main id="main" class="main" style="background-color: gold;">
 
 		<div class="pagetitle">
 			<h1>Vendor User</h1>
@@ -46,17 +46,17 @@
 							<div class="card">
 
 
-								<div class="card-body">
+								<div class="card-body" style="background-color: black; color: gold;">
 									<h5 class="card-title">
 										Vendors<span>/all</span>
 									</h5>
-
+								
 
 									<table class="table datatable datatable-table table-hover" id="myTable">
 										<thead>
 											<tr>
-												<th>Title</th>
-												<th>Action</th>
+												<th style="background-color: gold; color: black;">Title</th>
+												<th style="background-color: gold; color: black;">Action</th>
 											
 											</tr>
 										</thead>
@@ -64,11 +64,12 @@
 										<tbody>
 											<c:forEach items="${vendorList}" var="v">
 												<tr>
-													<td>${v.title}</td>
+													<td style="background-color: black; color: gold;">${v.title}</td>
 													
-													<td><a href="#">Edit</a> |
-												    <a href="deletevendor?vendorid=${v.vendorId}">Delete</a> |
-												    <a href="ViewVendor?vendorid=${v.vendorId}">View</a>
+													<td style="background-color: black; color: gold;">
+												    <a href="ViewVendor?vendorid=${v.vendorId}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>|
+													<a href="EditVendor?vendorId=${v.vendorId }" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a> |
+												    <a href="deletevendor?vendorid=${v.vendorId}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a> 
 													</td>
 
 												</tr>

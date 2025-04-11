@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.grownited.entity.CategoryEntity;
+import com.grownited.entity.userentity;
 import com.grownited.repository.CategoryRepository;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class CategoryController {
@@ -24,8 +27,12 @@ public class CategoryController {
 	}
 	
 	@PostMapping("savecategory")
-	public String savecategory(CategoryEntity entitycategory) {
+	public String savecategory(CategoryEntity entitycategory, HttpSession session) {
 		System.out.println(entitycategory.getTitle());
+		
+		userentity user = (userentity)session.getAttribute("user");
+		Integer userid = user.getUserid();
+		entitycategory.setUserid(userid);
 		
 		repositorycategory.save(entitycategory);
 		return "Category";
@@ -56,6 +63,33 @@ public class CategoryController {
 		}
 		return "ViewCategory";
 	}
+	
+	@GetMapping("EditCategory")
+	public String editCategory(Integer categoryId,Model model) {
+		Optional<CategoryEntity> op = repositorycategory.findById(categoryId);
+		if (op.isEmpty()) {
+			return "redirect:/ListCategory";
+		} else {
+			model.addAttribute("Category",op.get());
+			return "EditCategory";
+
+		}
+	}
+	
+	@PostMapping("updatecategory")
+	public String updatecategory(CategoryEntity categoryEntity) {
+		
+		System.out.println(categoryEntity.getTitle());
+				Optional<CategoryEntity> op = repositorycategory.findById(categoryEntity.getCategoryId());
+		if(op.isPresent())
+		{
+		CategoryEntity dbac = op.get(); 
+			dbac.setTitle(categoryEntity.getTitle());
+			repositorycategory.save(dbac);
+		}
+		return "redirect:/ListCategory";
+	}
+	
 }
 
 

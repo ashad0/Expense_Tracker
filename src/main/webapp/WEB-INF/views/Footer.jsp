@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<footer id="footer" class="footer">
-	<div class="copyright">
-		© Copyright <strong><span>iGate</span></strong>. All Rights
+	<footer id="footer" class="footer" style="background-color: black; color: gold;">
+	<div class="copyright" style="color: gold; ">
+		© Copyright <strong><span>Trackify</span></strong>. All Rights
 		Reserved
 	</div>
 </footer>

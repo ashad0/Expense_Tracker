@@ -3,9 +3,11 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Add SubCategory</title>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Edit SubCategory</title>
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -13,49 +15,57 @@
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/css/style.css" rel="stylesheet">
-  
+
   <jsp:include page="Admincss.jsp" />
 </head>
-<body>
 
+<body>
   <jsp:include page="Header.jsp" />
   <jsp:include page="Sidebar.jsp" />
 
   <main id="main" class="main">
     <section class="section dashboard">
-      <div class="row justify-content-center">
+      <div class="row justify-content-center" style="min-height: 500px;">
         <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
 
               <div class="pt-4 pb-2">
-                <h5 class="card-title text-center pb-0 fs-4">Add SubCategory</h5>
+                <h5 class="card-title text-center pb-0 fs-4">Edit SubCategory</h5>
               </div>
 
-              <form action="savesub" method="post" class="row g-3 needs-validation" novalidate>
+              <form action="updatesub" method="post" class="row g-3 needs-validation" novalidate>
 
-                <!-- Subcategory Title -->
+                <!-- SubCategory Title -->
                 <div class="col-12">
                   <label for="title" class="form-label fw-bold icon-blue">SubCategory Title</label>
-                  <input type="text" class="form-control" id="title" name="title" placeholder="Enter subcategory title" required>
-                  <div class="invalid-feedback">Please enter subcategory title.</div>
+                  <input type="text" class="form-control" id="title" name="title" value="${Sub.title}" required>
+                  <div class="invalid-feedback">Please enter subcategory title!</div>
                 </div>
 
                 <!-- Category Dropdown -->
                 <div class="col-12">
                   <label for="categoryId" class="form-label fw-bold icon-blue">Select Category</label>
-                  <select class="form-select" name="categoryId" id="categoryId" required>
-                    <option value="" disabled selected>Select category</option>
-                    <c:forEach items="${categoryList}" var="c">
-                      <option value="${c.categoryId}">${c.title}</option>
+                  <select class="form-control" name="categoryId" id="categoryId" required>
+                    <option value="" disabled>Select category</option>
+                    <c:forEach items="${categoryList}" var="cat">
+                      <option value="${cat.categoryId}" ${cat.categoryId == Sub.categoryId ? 'selected' : ''}>${cat.title}</option>
                     </c:forEach>
                   </select>
                   <div class="invalid-feedback">Please select a category.</div>
                 </div>
 
+                <!-- Hidden SubCategory ID -->
+                <input type="hidden" name="subId" value="${Sub.subId}" />
+
                 <!-- Submit Button -->
                 <div class="col-12">
-                  <button class="btn btn-primary w-100" type="submit" style="color: gold; background-color: black;">Save SubCategory</button>
+                  <button class="btn btn-primary w-100" type="submit">Update SubCategory</button>
+                </div>
+
+                <!-- Back to List -->
+                <div class="col-12 text-center">
+                  <p class="small">Back to <a href="ListSub"><b>List</b></a></p>
                 </div>
 
               </form>
@@ -70,7 +80,6 @@
   <jsp:include page="Footer.jsp" />
   <jsp:include page="AdminJs.jsp" />
 
-  <!-- Bootstrap validation script -->
   <script>
     (() => {
       'use strict';
@@ -86,6 +95,5 @@
       });
     })();
   </script>
-
 </body>
 </html>

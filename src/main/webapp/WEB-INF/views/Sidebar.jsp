@@ -1,15 +1,77 @@
+<style>
+
+
+/* Sidebar background black */
+.sidebar {
+  background-color: #000 !important;
+}
+
+/* Sidebar nav items background black and text golden */
+.sidebar-nav .nav-item,
+.sidebar-nav .nav-link,
+.sidebar-nav .nav-content a {
+  background-color: #000 !important;
+  color: gold !important;
+}
+
+/* Icons and arrows golden */
+.sidebar-nav .bi,
+.sidebar-nav .nav-link i,
+.sidebar-nav .nav-content i {
+  color: gold !important;
+}
+
+/* Hover effect for nav links */
+.sidebar-nav .nav-link:hover,
+.sidebar-nav .nav-content a:hover {
+  background-color: #111 !important;
+  color: gold !important;
+}
+
+/* Form fields background black and text golden */
+input,
+select,
+textarea {
+  background-color: #000 !important;
+  color: gold !important;
+  border: 1px solid gold !important;
+}
+
+/* Placeholder text golden */
+input::placeholder,
+textarea::placeholder {
+  color: gold !important;
+}
+
+/* For disabled fields */
+input:disabled,
+select:disabled,
+textarea:disabled {
+  background-color: #222 !important;
+  color: gold !important;
+  opacity: 0.6;
+}
+
+/* Bootstrap form controls if used */
+.form-control,
+.form-select {
+  background-color: #000 !important;
+  color: gold !important;
+  border: 1px solid gold !important;
+}
+
+
+</style>
+
 <aside id="sidebar" class="sidebar">
 
 	<ul class="sidebar-nav" id="sidebar-nav">
 
-		<li class="nav-item"><a class="nav-link " href="index.html">
-				<i class="bi bi-grid"></i> <span>Dashboard</span>
-		</a></li>
 		<!-- End Dashboard Nav -->
 
 		<li class="nav-item"><a class="nav-link collapsed"
 			data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-				<i class="bi bi-person"></i><span>Users</span><i
+				<i  class="bi bi-person"></i><span>Users</span><i
 				class="bi bi-chevron-down ms-auto"></i>
 		</a>
 			<ul id="components-nav" class="nav-content collapse "
@@ -63,7 +125,7 @@
 
 		<li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Category</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-alarm"></i><span>Category</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
@@ -81,7 +143,7 @@
 
 	<li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-bar-chart"></i><span>Sub-Category</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi-house"></i><span>Sub-Category</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
@@ -100,7 +162,7 @@
       
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#expense-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-wallet2"></i><span>Expenses</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi-cash"></i><span>Expenses</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="expense-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>

@@ -5,25 +5,67 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style>
+  /* 🔥 Header styling */
+  .header {
+    background-color: #000 !important;
+    color: gold;
+  }
+
+  .header h2.name {
+    color: gold;
+    margin-left: 20px;
+  }
+
+  .search-bar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+  }
+
+  .search-form input[type="text"] {
+    width: 100%;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+  }
+
+  .search-form button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-left: none;
+    background-color: #333;
+    color: gold;
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* Dropdowns text color */
+  .dropdown-menu, .dropdown-header, .dropdown-item {
+    color: black !important;
+  }
+
+  .nav-link, .nav-link i, .nav-link span {
+    color: gold !important;
+  }
+</style>
+
+<!-- Don't forget to include Bootstrap + Icons if not already -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
 </head>
 <body>
-	<!-- ======= Header ======= -->
+	<!-- ======= Header ====== -->
   <header id="header" class="header fixed-top d-flex align-items-center">
+  
+	<h2 class="name">Trackify</h2>	
+		
+  <!-- End Search Bar -->
 
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="Home.jsp" class="logo d-flex align-items-center">
-        <span class="bi bi-bar-chart-fill">  TrackiFy </span>
-      </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div><!-- End Logo -->
-
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
-
+	
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
@@ -45,9 +87,7 @@
               You have 4 new notifications
               <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <li><hr class="dropdown-divider"></li>
 
             <li class="notification-item">
               <i class="bi bi-exclamation-circle text-warning"></i>
@@ -58,9 +98,7 @@
               </div>
             </li>
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <li><hr class="dropdown-divider"></li>
 
             <li class="notification-item">
               <i class="bi bi-x-circle text-danger"></i>
@@ -71,9 +109,7 @@
               </div>
             </li>
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <li><hr class="dropdown-divider"></li>
 
             <li class="notification-item">
               <i class="bi bi-check-circle text-success"></i>
@@ -84,9 +120,7 @@
               </div>
             </li>
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <li><hr class="dropdown-divider"></li>
 
             <li class="notification-item">
               <i class="bi bi-info-circle text-primary"></i>
@@ -97,9 +131,7 @@
               </div>
             </li>
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <li><hr class="dropdown-divider"></li>
             <li class="dropdown-footer">
               <a href="#">Show all notifications</a>
             </li>
@@ -120,9 +152,7 @@
               You have 3 new messages
               <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <li><hr class="dropdown-divider"></li>
 
             <li class="message-item">
               <a href="#">
@@ -134,9 +164,7 @@
                 </div>
               </a>
             </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <li><hr class="dropdown-divider"></li>
 
             <li class="message-item">
               <a href="#">
@@ -148,9 +176,7 @@
                 </div>
               </a>
             </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <li><hr class="dropdown-divider"></li>
 
             <li class="message-item">
               <a href="#">
@@ -162,9 +188,7 @@
                 </div>
               </a>
             </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <li><hr class="dropdown-divider"></li>
 
             <li class="dropdown-footer">
               <a href="#">Show all messages</a>
@@ -175,20 +199,16 @@
         </li><!-- End Messages Nav -->
 
         <li class="nav-item dropdown pe-3">
-
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
-          </a><!-- End Profile Iamge Icon -->
-
+			    <img src="${user.profilePicPath}" alt="Profile" class="rounded-circle">
+			    <span class="d-none d-md-block dropdown-toggle ps-2">${user.firstName}</span>
+			</a>
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6>Kevin Anderson</h6>
               <span>Web Designer</span>
             </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <li><hr class="dropdown-divider"></li>
 
             <li>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
@@ -196,9 +216,7 @@
                 <span>My Profile</span>
               </a>
             </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <li><hr class="dropdown-divider"></li>
 
             <li>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
@@ -206,9 +224,7 @@
                 <span>Account Settings</span>
               </a>
             </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <li><hr class="dropdown-divider"></li>
 
             <li>
               <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
@@ -216,12 +232,10 @@
                 <span>Need Help?</span>
               </a>
             </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <li><hr class="dropdown-divider"></li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="Signup.jsp">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -232,7 +246,7 @@
 
       </ul>
     </nav><!-- End Icons Navigation -->
-
-  </header><!-- End Header -->	
+	
+  </header><!-- End Header -->
 </body>
 </html>
