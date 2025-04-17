@@ -9,24 +9,18 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Edit Income</title>
-
-  <!-- Google Fonts & Vendor CSS -->
-  <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Nunito:300,400,600,700|Poppins:300,400,500,600,700" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
-  <jsp:include page="Admincss.jsp"></jsp:include>
+  
+  <style>
+	.main{
+		margin-top: 50px;
+	}
+</style>
+  
 </head>
 
 <body>
-  <jsp:include page="Header.jsp"></jsp:include>
-  <jsp:include page="Sidebar.jsp"></jsp:include>
+  <jsp:include page="Header2.jsp"></jsp:include>
+  <jsp:include page="Sidebar2.jsp"></jsp:include>
 
   <main id="main" class="main">
     <section class="section dashboard">
@@ -96,8 +90,7 @@
     </section>
   </main>
 
-  <jsp:include page="Footer.jsp"></jsp:include>
-  <jsp:include page="AdminJs.jsp"></jsp:include>
+  <jsp:include page="Footer2.jsp"></jsp:include>
 
   <!-- Optional JS -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

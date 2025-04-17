@@ -28,11 +28,11 @@ public class SubController {
 	
 	@GetMapping("Sub")
 	public String sub(Model model) {
-		List<CategoryEntity> categoryList = categoryRepository.findAll();
-		model.addAttribute("categoryList", categoryList);
-		return "Sub";
+	    List<CategoryEntity> categoryList = categoryRepository.findAll();
+	    model.addAttribute("categoryList", categoryList);
+	    return "Sub"; // View name changed to SubCategory
 	}
-	
+
 	@PostMapping("savesub")
 	public String savesub(SubEntity entitysub, HttpSession session,Integer categoryId) {
 		System.out.println(entitysub.getTitle());
@@ -63,17 +63,18 @@ public class SubController {
 	
 	
 	@GetMapping("/ViewSub")
-	public String viewsub( Integer subid, Model model) {
-	    System.out.println("id ===> " + subid);
+	public String viewsub(Integer subid, Model model) {
 	    Optional<SubEntity> op = repositorysub.findById(subid);
 	    if (op.isEmpty()) {
-	        // Handle user not found scenario
+	        // Redirect to list page or show an error message
+	        return "redirect:/ListSub";
 	    } else {
 	        SubEntity sub = op.get();
 	        model.addAttribute("sub", sub);
+	        return "ViewSub"; // Make sure ViewSub.jsp exists
 	    }
-	    return "ViewSub";
 	}
+
 	
 	@GetMapping("EditSub")
 	public String editSub(Integer subId,Model model) {

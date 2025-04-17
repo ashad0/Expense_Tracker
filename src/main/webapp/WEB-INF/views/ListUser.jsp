@@ -71,11 +71,15 @@
 													<td style="background-color: black; color: gold;">${u.email}</td>
 													<td style="background-color: black; color: gold;">${u.mobileNumber}</td>
 													<td style="background-color: black; color: gold;">
-													 <a href="ViewUser?userid=${u.userid}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a> |
-													<a href="EditUser?userid=${u.userid }" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a> |
-													<a href="deleteuser?userid=${u.userid}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
-													 </td>
-												</tr>
+													    <a href="ViewUser?userid=${u.userid}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a> |
+													    <a href="EditUser?userid=${u.userid}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a> |
+													    <a href="deleteuser?userid=${u.userid}" 
+													       class="btn btn-danger btn-sm" 
+													       onclick="return confirm('Are you sure you want to delete this user?');">
+													       <i class="bi bi-trash"></i>
+													    </a>
+													</td>
+
 											</c:forEach>
 										</tbody>
 

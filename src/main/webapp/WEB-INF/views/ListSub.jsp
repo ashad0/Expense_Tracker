@@ -18,17 +18,16 @@
 
 </head>
 <body>
-	<jsp:include page="Header.jsp"></jsp:include>
+	<jsp:include page="Header2.jsp"></jsp:include>
 
-	<jsp:include page="Sidebar.jsp"></jsp:include>
+	<jsp:include page="Sidebar2.jsp"></jsp:include>
 
-	<main id="main" class="main" style="background-color: gold;">
+	<main id="main" class="main">
 
 		<div class="pagetitle">
 			<h1>List SubCategory</h1>
 			<nav>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="admindashboard">Home</a></li>
 					<li class="breadcrumb-item active">List SubCategory</li>
 				</ol>
 			</nav>
@@ -46,7 +45,7 @@
 							<div class="card">
 
 
-								<div class="card-body" style="background-color: black; color: gold;">
+								<div class="card-body">
 									<h5 class="card-title">
 										SubCategory<span>/all</span>
 									</h5>
@@ -55,8 +54,8 @@
 									<table class="table datatable datatable-table table-hover" id="myTable">
 										<thead>
 											<tr>
-												<th style="background-color: gold; color: black;">Title</th>
-												<th style="background-color: gold; color: black;">Action</th>
+												<th>Action</th>
+												<th>Title</th>
 											
 											</tr>
 										</thead>
@@ -64,21 +63,27 @@
 										<tbody>
 											<c:forEach items="${subList}" var="s">
 												<tr>
-													<td style="background-color: black; color: gold;">${s.title}</td>
-													<td style="background-color: black; color: gold;">
-													 <a href="ViewSub?subid=${s.subId}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a> |
-													<a href="EditSub?subId=${s.subId }" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a> |
-													<a href="deletesub?subid=${s.subId}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
-												
-													 </td>
+												    <td>
+												        <a href="ViewSub?subid=${s.subId}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a> |
+												        <a href="EditSub?subId=${s.subId }" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a> |
+												        <a href="deletesub?subid=${s.subId}" 
+												           class="btn btn-danger btn-sm" 
+												           onclick="return confirm('Are you sure you want to delete this subcategory?');">
+												           <i class="bi bi-trash"></i>
+												        </a>
+												    </td>
+												    <td>${s.title}</td>
 												</tr>
+
 											</c:forEach>
 										</tbody>
 
 									</table>
 
 
-
+<div class="col-12 text-center mt-3">
+                    <a href="Category" class="btn btn-secondary w-100">Back of Category</a>
+                </div>
 								</div>
 
 							</div>
@@ -99,7 +104,7 @@
 	<!-- main content end  -->
 
 
-	<jsp:include page="Footer.jsp"></jsp:include>
+	<jsp:include page="Footer2.jsp"></jsp:include>
 
 	<jsp:include page="AdminJs.jsp"></jsp:include>
 	

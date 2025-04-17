@@ -20,4 +20,5 @@ public interface IncomeRepository extends JpaRepository<IncomeEntity, Integer>{
     @Query(value = "select i.*, u.title , u.status , u.amount , u.transactionDate , u.description from user u, income i where i.userid = u.userid and i.incomeid = :incomeId", nativeQuery = true)
     List<Object[]> getByincomeId(@Param("incomeId") Integer incomeId);
 
+    
 }

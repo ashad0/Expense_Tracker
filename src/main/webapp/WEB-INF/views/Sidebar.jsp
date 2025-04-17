@@ -82,7 +82,8 @@ textarea:disabled {
 				<li><a href="ListUser"> <i class="bi bi-circle"></i><span>List
 							User</span>
 				</a></li>
-			</ul></li>
+			</ul>
+		</li>
 		<!-- End Components Nav -->
 
 
@@ -119,82 +120,6 @@ textarea:disabled {
               <i class="bi bi-circle"></i><span>List Vendor</span>
             </a>
           </li>
-        </ul>
-      </li>
-
-
-		<li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-alarm"></i><span>Category</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="Category">
-              <i class="bi bi-circle"></i><span>Add Category</span>
-            </a>
-          </li>
-          <li>
-            <a href="ListCategory">
-              <i class="bi bi-circle"></i><span>List Category</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-	<li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi-house"></i><span>Sub-Category</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="Sub">
-              <i class="bi bi-circle"></i><span>Add Sub-Category</span>
-            </a>
-          </li>
-          <li>
-            <a href="ListSub">
-              <i class="bi bi-circle"></i><span>List Sub-Category</span>
-            </a>
-          </li>
-         
-        </ul>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#expense-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi-cash"></i><span>Expenses</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="expense-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="Expense">
-              <i class="bi bi-circle"></i><span>Add Expense</span>
-            </a>
-          </li>
-          <li>
-            <a href="ListExpense">
-              <i class="bi bi-circle"></i><span>List Expense</span>
-            </a>
-          </li>
-         
-        </ul>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#income-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-wallet2"></i><span>Incomes</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="income-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="Income">
-              <i class="bi bi-piggy-bank-fill"></i><span>Add Income</span>
-            </a>
-          </li>
-          <li>
-            <a href="ListIncome">
-              <i class="bi bi-piggy-bank-fill"></i><span>List Income</span>
-            </a>
-          </li>
-         
         </ul>
       </li>
       

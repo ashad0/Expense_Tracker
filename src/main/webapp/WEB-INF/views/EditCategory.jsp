@@ -16,8 +16,8 @@
 </head>
 <body>
 
-<jsp:include page="Header.jsp" />
-<jsp:include page="Sidebar.jsp" />
+<jsp:include page="Header2.jsp" />
+<jsp:include page="Sidebar2.jsp" />
 
 <main id="main" class="main">
   <section class="section dashboard">
@@ -57,7 +57,7 @@
   </section>
 </main>
 
-<jsp:include page="Footer.jsp" />
+<jsp:include page="Footer2.jsp" />
 <jsp:include page="AdminJs.jsp" />
 
 <!-- Scripts -->

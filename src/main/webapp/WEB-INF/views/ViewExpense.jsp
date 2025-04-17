@@ -15,8 +15,8 @@
 </head>
 <body>
 
-<jsp:include page="Header.jsp"></jsp:include>
-<jsp:include page="Sidebar.jsp"></jsp:include>
+<jsp:include page="Header2.jsp"></jsp:include>
+<jsp:include page="Sidebar2.jsp"></jsp:include>
 
 <main id="main" class="main">
 
@@ -31,35 +31,35 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-body pt-3" style="background-color: black; color: gold;">
+                            <div class="card-body pt-3">
                                 <ul class="list-group list-group-flush">
 
-                                    <li class="list-group-item" style="background-color: black; color: gold;">
+                                    <li class="list-group-item">
                                         <span class="fw-bold icon-blue">Title:</span>
                                         <span class="value">${expense.title}</span>
                                     </li>
 
-                                    <li class="list-group-item" style="background-color: black; color: gold;">
+                                    <li class="list-group-item">
                                         <span class="fw-bold icon-blue">Status:</span>
                                         <span class="value">${expense.status}</span>
                                     </li>
 
-                                    <li class="list-group-item" style="background-color: black; color: gold;">
+                                    <li class="list-group-item">
                                         <span class="fw-bold icon-blue">Amount:</span>
                                         <span class="value">${expense.amount}</span>
                                     </li>
 
-                                    <li class="list-group-item" style="background-color: black; color: gold;">
+                                    <li class="list-group-item">
                                         <span class="fw-bold icon-blue">Transaction Date:</span>
                                         <span class="value">${expense.transactionDate}</span>
                                     </li>
 
-                                    <li class="list-group-item" style="background-color: black; color: gold;">
+                                    <li class="list-group-item">
                                         <span class="fw-bold icon-blue">Description:</span>
                                         <span class="value">${expense.description}</span>
                                     </li>
                                     
-                                     <div class="col-12 text-center" style="background-color: black; color: gold;">
+                                     <div class="col-12 text-center">
 				                      <p class="small">Back to <a href="ListExpense"><b>List</b></a></p>
 				                    </div>
 
@@ -75,7 +75,7 @@
 
 </main>
 
-<jsp:include page="Footer.jsp"></jsp:include>
+<jsp:include page="Footer2.jsp"></jsp:include>
 <jsp:include page="AdminJs.jsp"></jsp:include>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

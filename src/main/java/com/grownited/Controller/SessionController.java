@@ -2,6 +2,9 @@ package com.grownited.Controller;
 
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.Cloudinary;
@@ -34,6 +38,7 @@ public class SessionController {
 	
 	@Autowired
 	PasswordEncoder encoder;
+	
 	
 	@Autowired
 	Cloudinary cloudinary;
@@ -200,7 +205,7 @@ public class SessionController {
 	@GetMapping("logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/login";// login url
+		return "redirect:/Login";// login url
 	}
 	
 	@GetMapping("ListUser")
@@ -268,6 +273,37 @@ public class SessionController {
 
 	    return "AdminProfile";  // Return the profile page
 	}
+	
+
+	@PostMapping("updateprofile")
+	public String updateProfile(userentity userentity, HttpSession session) {
+	    Optional<userentity> op = repouseRepository.findById(userentity.getUserid());
+	    if (op.isPresent()) {
+	        userentity dbUser = op.get();
+	        dbUser.setFirstName(userentity.getFirstName());
+	        dbUser.setLastName(userentity.getLastName());
+	        dbUser.setEmail(userentity.getEmail());
+	        dbUser.setMobileNumber(userentity.getMobileNumber());
+
+	        repouseRepository.save(dbUser);
+	        session.setAttribute("user", dbUser); // session bhi update karo
+	    }
+	    return "redirect:/MyProfile";
+	}
+
+	@GetMapping("EditProfile")
+	public String editProfile(Integer userid, Model model) {
+	    Optional<userentity> op = repouseRepository.findById(userid);
+	    if (op.isPresent()) {
+	        model.addAttribute("user", op.get());
+	        return "EditProfile";
+	    } else {
+	        return "redirect:/MyProfile";
+	    }
+	}
+	
+
+
 }
 
 

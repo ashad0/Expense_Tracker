@@ -10,8 +10,8 @@
 </head>
 <body>
 
-<jsp:include page="Header.jsp" />
-<jsp:include page="Sidebar.jsp" />
+<jsp:include page="Header2.jsp" />
+<jsp:include page="Sidebar2.jsp" />
 
 <main id="main" class="main">
 
@@ -24,15 +24,15 @@
         <div class="row" style="min-height: 500px;">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-body pt-3" style="background-color: black; color: gold;">
+                    <div class="card-body pt-3">
                         <ul class="list-group list-group-flush">
 
-                            <li class="list-group-item" style="background-color: black; color: gold;">
+                            <li class="list-group-item">
                                 <span class="fw-bold icon-blue">Title:</span>
                                 <span class="value">${category.title}</span>
                             </li>
 
-                            <div class="col-12 text-center mt-3" style="background-color: black; color: gold;">
+                            <div class="col-12 text-center mt-3">
                                 <p class="small">Back to <a href="ListCategory"><b>List</b></a></p>
                             </div>
 
@@ -45,7 +45,7 @@
 
 </main>
 
-<jsp:include page="Footer.jsp" />
+<jsp:include page="Footer2.jsp" />
 <jsp:include page="AdminJs.jsp" />
 
 </body>
